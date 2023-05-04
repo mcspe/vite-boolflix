@@ -19,8 +19,8 @@
   <Card 
     v-for="media in store.searchResult.results"
     :key="media.id" 
-    :title="media.title"
-    :originalTitle="media.original_title"
+    :title="media.title || media.name"
+    :originalTitle="media.original_title || media.original_name"
     :language="media.original_language"
     :vote="media.vote_average"
     />

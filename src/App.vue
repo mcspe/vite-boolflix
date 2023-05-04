@@ -16,7 +16,7 @@
     },
     methods: {
       getApi(){
-        axios.get(store.apiUrl, {
+        axios.get(store.apiUrl + store.selectedMedia, {
           params:{
             api_key: store.apiKey,
             query: store.searchBarString,
@@ -25,6 +25,7 @@
         })
         .then(result => {
           store.searchResult = result.data;
+          console.log(result.data);
         })
       }
     },
