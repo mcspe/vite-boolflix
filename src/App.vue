@@ -1,4 +1,6 @@
 <script>
+  import { store } from "./data/store.js";
+  import axios from "axios";
   import Header from './components/Header.vue';
   import Main from './components/Main.vue';
   export default{
@@ -6,12 +8,34 @@
     components: {
       Header,
       Main
+    },
+    data() {
+      return {
+        store
+      }
+    },
+    methods: {
+      getApi(){
+        axios.get(store.apiUrl, {
+          params:{
+            api_key: store.apiKey,
+            query: store.searchBarString,
+            language: ''
+          }
+        })
+        .then(result => {
+          store.searchResult = result.data;
+        })
+      }
+    },
+    mounted(){
+
     }
   }
 </script>
 
 <template>
-  <Header />
+  <Header @startSearch="getApi" /> 
   <Main />
 </template>
 
