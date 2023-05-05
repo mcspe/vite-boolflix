@@ -1,6 +1,7 @@
 <script>
   import CountryFlag from 'vue-country-flag-next';
   import { store } from "../../data/store.js";
+
   export default {
     name: 'Card',
     data() {
@@ -16,7 +17,7 @@
       img: String
     },
     components: {
-      CountryFlag
+      CountryFlag,
     },
     computed: {
       setLanguage() {
@@ -34,7 +35,9 @@
     <li>{{ title }}</li>
     <li>{{ originalTitle }}</li>
     <li><country-flag :country='setLanguage' size='small'/></li>
-    <li>{{ vote }}</li>
+    <li>{{ vote }}
+      <font-awesome-icon icon="fa-regular fa-star" />
+    </li>
     <li><img :src="setImageUrl" :alt="title"></li>
   </ul>
 </template>  
