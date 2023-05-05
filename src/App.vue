@@ -1,21 +1,35 @@
 <script>
   import { store } from "./data/store.js";
   import axios from "axios";
+  import Preview from './components/Preview.vue';
   import Header from './components/Header.vue';
   import Main from './components/Main.vue';
   export default{
     name: 'App',
     components: {
+      Preview,
       Header,
       Main
     },
     data() {
       return {
+        isLogged: false,
         store
       }
     },
     methods: {
-      getApi(){
+      getConfiguration() {
+        axios.get(store.getImgUrl, {
+          params:{
+            api_key: store.apiKey
+          }
+        })
+        .then(result => {
+          store.imgInfo = result.data;
+          // console.log(store.imgInfo.images);
+        })
+      },
+      getApi() {
         axios.get(store.apiUrl + store.selectedMedia, {
           params:{
             api_key: store.apiKey,
@@ -25,29 +39,30 @@
         })
         .then(result => {
           store.searchResult = result.data;
-          console.log(result.data);
+          //console.log(result.data);
         })
       }
     },
     mounted(){
-      axios.get(store.getImgUrl, {
-        params:{
-          api_key: store.apiKey,
-        }
-      })
-      .then(result => {
-        store.imgInfo = result.data;
-        // console.log(store.imgInfo.images);
-      })
+      this.getConfiguration();
     }
   }
 </script>
 
 <template>
-  <Header @startSearch="getApi" /> 
-  <Main />
+  <div 
+    class="preview"
+    v-if="!isLogged">
+    <Preview />
+  </div>
+  <div 
+    class="appBoolflix"
+    v-else>
+    <Header @startSearch="getApi" /> 
+    <Main />
+  </div>
 </template>
 
 <style lang="scss">
-  
+  @use './scss/main.scss'
 </style>
