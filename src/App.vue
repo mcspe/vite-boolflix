@@ -30,7 +30,15 @@
       }
     },
     mounted(){
-
+      axios.get(store.getImgUrl, {
+        params:{
+          api_key: store.apiKey,
+        }
+      })
+      .then(result => {
+        store.imgInfo = result.data;
+        // console.log(store.imgInfo.images);
+      })
     }
   }
 </script>

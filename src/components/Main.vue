@@ -23,6 +23,7 @@
     :originalTitle="media.original_title || media.original_name"
     :language="media.original_language"
     :vote="media.vote_average"
+    :img="media.backdrop_path"
     />
 </template>  
 
