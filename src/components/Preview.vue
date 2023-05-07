@@ -10,6 +10,11 @@
         isLoaded: false
       }
     },
+    methods: {
+      login(i) {
+        this.$emit('login', i);
+      }
+    },
     mounted() {
       setTimeout(() => {
         this.isLoaded = true;
@@ -25,7 +30,7 @@
       <div class="shadow"></div>
     </div>
     <div v-else class="selectAccount h-100">
-      <AccountCard />
+      <AccountCard @login="login"/>
     </div>
   </div>
 </template>  

@@ -41,6 +41,10 @@
           store.searchResult = result.data;
           //console.log(result.data);
         })
+      },
+      login(i) {
+        this.isLogged = true;
+        store.activeAccount = store.accounts[i]
       }
     },
     mounted(){
@@ -53,7 +57,7 @@
   <div 
     class="preview"
     v-if="!isLogged">
-    <Preview />
+    <Preview @login="login"/>
   </div>
   <div 
     class="appBoolflix"
