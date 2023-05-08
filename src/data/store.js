@@ -31,6 +31,11 @@ export const store = reactive({
   ],
   selectedMedia: 'multi',
   apiKey: '4f166f04fc497eef28ad33fc0f0aceac',
+  apiParams: {
+    language: 'it-IT',
+    page: 1
+  },
+  currentApiUrl:'',
   searchBarString: '',
   searchResult: [],
   myList: []

@@ -68,7 +68,7 @@
 
       <div class="ms-actions my-5 d-flex gap-3">
         <button class="rounded-5">Watch</button>
-        <button @click="$emit(addToList)" class="rounded-5">Add to My List</button>
+        <button @click="$emit('addToList')" class="rounded-5">Add to My List</button>
       </div>
       <button class="close-accordion position-absolute" @click="openAccordion = false"><font-awesome-icon icon="fa-solid fa-xmark" /></button>
     </div>

@@ -6,6 +6,12 @@
       return {
         store
       }
+    },
+    methods: {
+      startSearch() {
+        store.apiParams.page = 1;
+        this.$emit('startSearch');
+      }
     }
   }
 </script>
@@ -30,8 +36,8 @@
         type="text" 
         placeholder="Cerca" 
         v-model="store.searchBarString"
-        @keyup.enter="$emit('startSearch')">
-      <button @click="$emit('startSearch')">Cerca</button>
+        @keyup.enter="startSearch">
+      <button @click="startSearch">Cerca</button>
       <label for="media">Scegli la categoria</label>
       <select 
         name="media" 

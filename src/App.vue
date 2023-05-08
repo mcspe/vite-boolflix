@@ -14,7 +14,8 @@
     data() {
       return {
         isLogged: false,
-        store
+        store,
+        homeApiUrl: 'https://api.themoviedb.org/3/trending/all/week'
       }
     },
     methods: {
@@ -29,17 +30,19 @@
           // console.log(store.imgInfo.images);
         })
       },
-      getApi() {
-        axios.get(store.apiUrl + store.selectedMedia, {
+      getApi(apiUrl) {
+        axios.get(apiUrl, {
           params:{
             api_key: store.apiKey,
             query: store.searchBarString,
-            language: ''
+            language: store.apiParams.language,
+            page: store.apiParams.page
           }
         })
         .then(result => {
+          console.log(result.data);
           store.searchResult = result.data;
-          //console.log(result.data);
+          store.currentApiUrl = apiUrl;
         })
       },
       login(i) {
@@ -47,8 +50,14 @@
         store.activeAccount = store.accounts[i];
       }
     },
+    computed: {
+      setApiUrl() {
+        return store.apiUrl + store.selectedMedia;
+      }
+    },
     mounted(){
       this.getConfiguration();
+      this.getApi(this.homeApiUrl);
     }
   }
 </script>
@@ -62,7 +71,7 @@
   <div 
     class="appBoolflix"
     v-else>
-    <Header @startSearch="getApi" /> 
+    <Header @startSearch="getApi(setApiUrl)" /> 
     <Main />
   </div>
 </template>
