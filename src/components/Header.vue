@@ -27,11 +27,14 @@
           v-for="(page, i) in store.pages"
           :key="i"
           class="h-100 d-inline-block mx-2">
-          <button>{{ page }}</button>
+          <button
+            @click="$emit('goToPage', page)">
+            {{ page }}
+          </button>
         </li>
       </ul>
     </nav>
-    <div>
+    <div class="float-right">
       <input 
         type="text" 
         placeholder="Cerca" 

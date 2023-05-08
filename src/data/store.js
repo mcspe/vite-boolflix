@@ -26,7 +26,6 @@ export const store = reactive({
     'home',
     'movies',
     'tv shows',
-    'recently added',
     'my list'
   ],
   selectedMedia: 'multi',

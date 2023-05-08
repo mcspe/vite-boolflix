@@ -15,7 +15,9 @@
       return {
         isLogged: false,
         store,
-        homeApiUrl: 'https://api.themoviedb.org/3/trending/all/week'
+        homeApiUrl: 'https://api.themoviedb.org/3/trending/all/week',
+        movieApiUrl: 'https://api.themoviedb.org/3/trending/movie/week',
+        tvApiUrl: 'https://api.themoviedb.org/3/trending/all/week'
       }
     },
     methods: {
@@ -29,6 +31,9 @@
           store.imgInfo = result.data;
           // console.log(store.imgInfo.images);
         })
+      },
+      resetSearch() {
+        store.searchResult = [];
       },
       getApi(apiUrl) {
         axios.get(apiUrl, {
@@ -49,6 +54,23 @@
       login(i) {
         this.isLogged = true;
         store.activeAccount = store.accounts[i];
+      },
+      selectPage(page) {
+        switch (page) {
+          case 'home':
+            this.getApi(this.homeApiUrl);
+            break;
+          case 'movies':
+            this.getApi(this.movieApiUrl);
+            break;
+          case 'tv shows':
+            this.getApi(this.tvApiUrl);
+            break;
+          case 'my list':
+            this.resetSearch();
+            store.searchResult.results = store.myList;
+            break;
+        }
       }
     },
     computed: {
@@ -72,7 +94,7 @@
   <div 
     class="appBoolflix"
     v-else>
-    <Header @startSearch="getApi(setApiUrl)" /> 
+    <Header @startSearch="getApi(setApiUrl)" @goToPage="selectPage"/> 
     <Main @apiCall="getApi(store.currentApiUrl)" />
   </div>
 </template>

@@ -14,7 +14,7 @@
     },
     methods: {
       addMedia(media) {
-        store.myList.push(media);
+        if (!store.myList.includes(media)) store.myList.push(media);
       },
       newApiCall(n) {
         store.apiParams.page += n;

@@ -32,7 +32,10 @@
       starVote() {
         return Math.floor(this.vote / 2);
       }
-    }
+    },
+    emits: [
+      'addToList'
+    ]
   }
 </script>
 
