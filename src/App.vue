@@ -41,6 +41,7 @@
         })
         .then(result => {
           console.log(result.data);
+          store.searchResult = [];
           store.searchResult = result.data;
           store.currentApiUrl = apiUrl;
         })
@@ -72,7 +73,7 @@
     class="appBoolflix"
     v-else>
     <Header @startSearch="getApi(setApiUrl)" /> 
-    <Main />
+    <Main @apiCall="getApi(store.currentApiUrl)" />
   </div>
 </template>
 
