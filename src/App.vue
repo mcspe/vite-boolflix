@@ -44,7 +44,7 @@
       },
       login(i) {
         this.isLogged = true;
-        store.activeAccount = store.accounts[i]
+        store.activeAccount = store.accounts[i];
       }
     },
     mounted(){
@@ -68,5 +68,10 @@
 </template>
 
 <style lang="scss">
-  @use './scss/main.scss'
+  @use './scss/main.scss';
+  @use './scss/vars' as *;
+  .appBoolflix {
+    min-height: 100vh;
+    background: linear-gradient(darken($color: $primary-bg-grey, $amount: 25%) 0%, $primary-bg-grey 40%,);
+  }
 </style>

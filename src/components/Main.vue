@@ -11,20 +11,29 @@
       return {
         store
       }
+    },
+    methods: {
+      addMedia(media) {
+        store.myList.push(media);
+      }
     }
   }
 </script>
 
 <template>
-  <Card 
-    v-for="media in store.searchResult.results"
-    :key="media.id" 
-    :title="media.title || media.name"
-    :originalTitle="media.original_title || media.original_name"
-    :language="media.original_language"
-    :vote="media.vote_average"
-    :img="media.backdrop_path"
-    />
+  <div class="container-fluid d-flex mx-auto flex-wrap">
+    <Card 
+      v-for="media in store.searchResult.results"
+      :key="media.id" 
+      :title="media.title || media.name"
+      :originalTitle="media.original_title || media.original_name"
+      :language="media.original_language"
+      :vote="media.vote_average"
+      :description="media.overview"
+      :img="media.backdrop_path"
+      @addToList="addMedia(media)"
+      />
+  </div>
 </template>  
 
 <style lang="scss" scoped>
