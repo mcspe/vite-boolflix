@@ -10,8 +10,8 @@
     methods: {
       startSearch() {
         store.apiParams.page = 1;
-        store.searchBarString = '';
         this.$emit('startSearch');
+        store.searchBarString = '';
       }
     }
   }

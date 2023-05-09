@@ -29,7 +29,7 @@
         })
         .then(result => {
           store.imgInfo = result.data;
-          // console.log(store.imgInfo.images);
+          //console.log(store.imgInfo.images);
         })
       },
       resetSearch() {
@@ -45,7 +45,6 @@
           }
         })
         .then(result => {
-          console.log(result.data);
           store.searchResult = [];
           store.searchResult = result.data;
           store.currentApiUrl = apiUrl;
